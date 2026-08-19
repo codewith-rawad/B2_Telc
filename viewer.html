@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Übung · telc B2 · Deutsch mit Rawad</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="viewer-page">
+    <nav class="viewer-nav-bar">
+        <div class="container viewer-nav-inner">
+            <a href="dashboard.html" class="qe-back"><i class="fas fa-arrow-left"></i> Dashboard</a>
+            <div class="viewer-nav-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Deutsch mit Rawad</span>
+            </div>
+            <button type="button" class="btn-secondary" id="logoutBtn" style="padding:10px 18px;font-size:0.9rem;">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container" style="padding-top:32px;padding-bottom:60px;">
+        <div id="errorContainer" class="error-message" style="display:none;margin-bottom:24px;"></div>
+        <div id="contentContainer">
+            <div class="viewer-loading">
+                <div class="spinner"></div>
+                <p>Inhalte werden geladen…</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="supabase.js"></script>
+    <script src="question-engine.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            if (!window.checkSession || !window.checkSession()) {
+                const redirect = encodeURIComponent(window.location.href)
+                window.location.href = 'login.html?redirect=' + redirect
+                return
+            }
+
+            const logoutBtn = document.getElementById('logoutBtn')
+            if (logoutBtn && window.logout) {
+                logoutBtn.addEventListener('click', window.logout)
+            }
+
+            const urlParams = new URLSearchParams(window.location.search)
+            const fileKey = urlParams.get('file')
+            const errorDiv = document.getElementById('errorContainer')
+            const contentDiv = document.getElementById('contentContainer')
+
+            function showError(msg) {
+                contentDiv.innerHTML = ''
+                errorDiv.style.display = 'flex'
+                errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ' + msg
+            }
+
+            if (!fileKey) {
+                showError('Keine Übung angegeben.')
+                return
+            }
+
+            try {
+                const voiceRes = await fetch('voices/manifest.json', { cache: 'no-store' })
+                if (voiceRes.ok) {
+                    const voiceList = await voiceRes.json()
+                    window.VOICE_MANIFEST = new Set(Array.isArray(voiceList) ? voiceList : [])
+                } else {
+                    window.VOICE_MANIFEST = null
+                }
+            } catch (e) {
+                window.VOICE_MANIFEST = null
+            }
+
+            const data = await window.loadQuestionsFile(fileKey)
+
+            if (!data) {
+                showError('Fehler beim Laden. Bitte erneut anmelden oder später versuchen.')
+                return
+            }
+
+            errorDiv.style.display = 'none'
+            contentDiv.innerHTML = ''
+
+            const params = {
+                topic: urlParams.get('topic'),
+                theme: urlParams.get('theme'),
+                index: urlParams.get('index'),
+                section: urlParams.get('section'),
+                task: urlParams.get('task')
+            }
+
+            if (!window.QuestionEngine) {
+                showError('question-engine.js konnte nicht geladen werden. Seite neu laden (Strg+F5).')
+                return
+            }
+
+            const handled = window.QuestionEngine.render(contentDiv, data, fileKey, params)
+
+            if (handled === false) {
+                showError('Dieses Format wird noch nicht unterstützt. Bitte kontaktieren Sie den Support.')
+            }
+
+            document.title = (window.getQuestionFileMeta(fileKey).titleDe || 'Übung') + ' · Deutsch mit Rawad'
+        })
+    </script>
+</body>
+
+</html>

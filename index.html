@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch mit Rawad · telc B2 Prüfungstraining</title>
+    <meta name="description"
+        content="telc Deutsch B2 – Lesen, Hören & Sprachbausteine. Bilingual DE/AR, instant feedback, Premium login.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="page-home">
+    <div class="home-bg" aria-hidden="true"></div>
+
+    <header class="home-nav">
+        <div class="home-nav-inner">
+            <a href="index.html" class="home-brand">
+                <span class="home-brand-icon"><i class="fas fa-graduation-cap"></i></span>
+                <span data-en="Deutsch mit Rawad" data-ar="تعلّم الألمانية مع رواد">Deutsch mit Rawad</span>
+            </a>
+            <div class="home-nav-actions">
+                <button type="button" class="home-lang-btn" id="langToggle" aria-label="Switch language">
+                    <span>EN</span>
+                </button>
+                <a href="https://t.me/mez123794" target="_blank" class="home-nav-link">
+                    <span data-en="Contact" data-ar="تواصل">Contact</span>
+                </a>
+                <a href="login.html" class="home-btn-gold">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span data-en="Login" data-ar="دخول">Login</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="home-hero">
+            <div class="home-hero-content">
+                <div class="home-hero-tag">
+                    <i class="fas fa-certificate"></i>
+                    <span data-en="telc Deutsch B2 · Full Exam Prep" data-ar="telc B2 · تحضير شامل للامتحان">telc Deutsch B2 · Full Exam Prep</span>
+                </div>
+                <h1>
+                    <span data-en="Master telc B2" data-ar="أتقن امتحان telc B2">Master telc B2</span><br>
+                    <em data-en="with Rawad" data-ar="مع رواد">with Rawad</em>
+                </h1>
+                <p class="home-hero-lead">
+                    <span
+                        data-en="Lesen · Hören · Sprachbausteine — real exam formats, bilingual DE/AR, instant feedback."
+                        data-ar="قراءة · سمع · Sprachbausteine — بنفس أسلوب الامتحان، ألماني + عربي، نتيجة فورية.">Lesen · Hören · Sprachbausteine — real exam formats, bilingual DE/AR, instant feedback.</span>
+                </p>
+                <div class="home-hero-btns">
+                    <a href="login.html" class="home-btn-gold">
+                        <i class="fas fa-play"></i>
+                        <span data-en="Start practicing" data-ar="ابدأ التمرين">Start practicing</span>
+                    </a>
+                    <a href="https://t.me/mez123794" target="_blank" class="home-btn-outline">
+                        <i class="fab fa-telegram"></i>
+                        <span data-en="Get access" data-ar="احصل على حساب">Get access</span>
+                    </a>
+                </div>
+                <div class="home-trust">
+                    <div class="home-trust-item">
+                        <i class="fas fa-language"></i>
+                        <span data-en="DE default · + عربي" data-ar="ألماني افتراضي · + عربي">DE default · + عربي</span>
+                    </div>
+                    <div class="home-trust-item">
+                        <i class="fas fa-bolt"></i>
+                        <span data-en="Instant feedback" data-ar="نتيجة فورية">Instant feedback</span>
+                    </div>
+                    <div class="home-trust-item">
+                        <i class="fas fa-lock"></i>
+                        <span data-en="Private login" data-ar="دخول خاص">Private login</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-hero-visual">
+                <div class="home-hero-slider" aria-label="Germany gallery">
+                    <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&q=80&auto=format&fit=crop"
+                        alt="Berlin Brandenburg Gate" class="home-slide active" width="900" height="600"
+                        loading="eager">
+                    <img src="https://images.unsplash.com/photo-1595867818082-083862f3d630?w=900&q=80&auto=format&fit=crop"
+                        alt="Munich city center" class="home-slide" width="900" height="600" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&q=80&auto=format&fit=crop"
+                        alt="Neuschwanstein Castle" class="home-slide" width="900" height="600" loading="lazy">
+                    <div class="home-slider-overlay"></div>
+                    <div class="home-slider-dots" role="tablist" aria-label="Slide navigation">
+                        <button type="button" class="home-slider-dot active" aria-label="Slide 1"
+                            data-slide="0"></button>
+                        <button type="button" class="home-slider-dot" aria-label="Slide 2" data-slide="1"></button>
+                        <button type="button" class="home-slider-dot" aria-label="Slide 3" data-slide="2"></button>
+                    </div>
+                </div>
+                <div class="home-preview-card">
+                    <div class="home-preview-header">
+                        <span class="home-preview-dot"></span>
+                        <span class="home-preview-title" data-en="Live exercise preview" data-ar="معاينة التمرين">Live
+                            exercise preview</span>
+                    </div>
+                    <div class="home-preview-row">
+                        <i class="fas fa-book-open"></i>
+                        <div>
+                            <strong>Leseverstehen L1–L3</strong>
+                            <span>Überschriften · MC · Anzeigen</span>
+                        </div>
+                    </div>
+                    <div class="home-preview-row">
+                        <i class="fas fa-headphones"></i>
+                        <div>
+                            <strong>Hörverstehen H1–H3</strong>
+                            <span>Multi-select · Richtig/Falsch</span>
+                        </div>
+                    </div>
+                    <div class="home-preview-row">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <div>
+                            <strong>Sprachbausteine S1</strong>
+                            <span>Lückentext · Grammatik & Wortschatz</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-stats">
+            <div class="home-stat">
+                <span class="home-stat-num">3</span>
+                <span class="home-stat-label" data-en="Lesen parts" data-ar="أجزاء قراءة">Lesen parts</span>
+            </div>
+            <div class="home-stat">
+                <span class="home-stat-num">3</span>
+                <span class="home-stat-label" data-en="Hören parts" data-ar="أجزاء سمع">Hören parts</span>
+            </div>
+            <div class="home-stat">
+                <span class="home-stat-num">1</span>
+                <span class="home-stat-label" data-en="Sprachbausteine" data-ar="Sprachbausteine">Sprachbausteine</span>
+            </div>
+            <div class="home-stat">
+                <span class="home-stat-num">150+</span>
+                <span class="home-stat-label" data-en="Exam models" data-ar="نماذج امتحان">Exam models</span>
+            </div>
+        </section>
+
+        <section class="home-section" id="curriculum">
+            <div class="home-section-head">
+                <h2 data-en="Full curriculum" data-ar="المنهج الكامل">Full curriculum</h2>
+                <p data-en="Everything behind your login — Lesen L1–L3, Hören H1–H3, Sprachbausteine S1. German default, Arabic with + عربي."
+                    data-ar="كل المحتوى خلف حسابك — Lesen L1–L3، Hören H1–H3، Sprachbausteine S1. ألماني افتراضياً، والعربية بـ + عربي.">
+                    Everything behind your login — Lesen L1–L3, Hören H1–H3, Sprachbausteine S1. German default, Arabic with + عربي.</p>
+            </div>
+            <div class="home-bento">
+                <article class="home-bento-card lesen">
+                    <div class="home-bento-img">
+                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80&auto=format&fit=crop"
+                            alt="Reading in a library" width="800" height="480" loading="lazy">
+                    </div>
+                    <div class="home-bento-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Leseverstehen L1–L3</h3>
+                    <p data-en="Headline matching, detail MC, situation ads — exact telc B2 format."
+                        data-ar="مطابقة عناوين، اختيار تفاصيل، إعلانات — بنفس شكل telc B2.">Headline matching, detail MC, situation ads — exact telc B2 format.</p>
+                    <div class="home-bento-tags">
+                        <span>L1 · L2 · L3</span>
+                        <span>+ عربي</span>
+                        <span>telc B2</span>
+                    </div>
+                </article>
+                <article class="home-bento-card horen">
+                    <div class="home-bento-img">
+                        <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&q=80&auto=format&fit=crop"
+                            alt="Listening with headphones" width="800" height="480" loading="lazy">
+                    </div>
+                    <div class="home-bento-icon"><i class="fas fa-headphones"></i></div>
+                    <h3>Hörverstehen H1–H3</h3>
+                    <p data-en="Multi-select statements & Richtig/Falsch — like the real listening exam."
+                        data-ar="اختيار جمل صحيحة وصح/خطأ — كالامتحان الحقيقي.">Multi-select statements & Richtig/Falsch — like the real listening exam.</p>
+                    <div class="home-bento-tags">
+                        <span>H1 · H2 · H3</span>
+                        <span>150+ Modelle</span>
+                        <span>telc B2</span>
+                    </div>
+                </article>
+                <article class="home-bento-card sprach">
+                    <div class="home-bento-img">
+                        <img src="https://images.unsplash.com/photo-1456513087680-66aaa68d4e38?w=800&q=80&auto=format&fit=crop"
+                            alt="German grammar study" width="800" height="480" loading="lazy">
+                    </div>
+                    <div class="home-bento-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h3>Sprachbausteine S1</h3>
+                    <p data-en="Gap-fill texts (21)–(30) with A/B/C — grammar & vocabulary in context."
+                        data-ar="نصوص بفراغات (21)–(30) مع A/B/C — قواعد ومفردات في السياق.">Gap-fill texts (21)–(30) with A/B/C — grammar & vocabulary in context.</p>
+                    <div class="home-bento-tags">
+                        <span>S1</span>
+                        <span>41 Texte</span>
+                        <span>telc B2</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+        <section class="home-section">
+            <div class="home-section-head">
+                <h2 data-en="How it works" data-ar="كيف يعمل">How it works</h2>
+            </div>
+            <div class="home-steps">
+                <article class="home-step">
+                    <div class="home-step-num">1</div>
+                    <h3 data-en="Get access" data-ar="احصل على وصول">Get access</h3>
+                    <p data-en="Contact us on Telegram for your personal account."
+                        data-ar="تواصل عبر تيليغرام للحصول على حسابك.">Contact us on Telegram for your personal account.
+                    </p>
+                </article>
+                <article class="home-step">
+                    <div class="home-step-num">2</div>
+                    <h3 data-en="Login" data-ar="سجّل الدخول">Login</h3>
+                    <p data-en="Open the dashboard and pick any part to practice."
+                        data-ar="افتح لوحة التحكم واختر أي جزء.">Open the dashboard and pick any part to practice.</p>
+                </article>
+                <article class="home-step">
+                    <div class="home-step-num">3</div>
+                    <h3 data-en="Practice & improve" data-ar="تمرّن وتحسّن">Practice & improve</h3>
+                    <p data-en="German first; tap + عربي to see both languages together."
+                        data-ar="ألماني أولاً؛ اضغط + عربي لرؤية اللغتين معاً.">German first; tap + عربي to see both
+                        languages together.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="home-cta-band">
+            <div class="home-cta-inner">
+                <div class="home-cta-bg" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1400&q=80&auto=format&fit=crop"
+                        alt="" width="1400" height="600" loading="lazy">
+                </div>
+                <h2 data-en="Ready to start?" data-ar="جاهز للبدء؟">Ready to start?</h2>
+                <p data-en="Log in with your premium account and open the dashboard."
+                    data-ar="سجّل دخولك وافتح لوحة التمارين.">Log in with your premium account and open the dashboard.
+                </p>
+                <div class="home-cta-btns">
+                    <a href="login.html" class="home-btn-gold">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span data-en="Login now" data-ar="دخول الآن">Login now</span>
+                    </a>
+                    <a href="https://t.me/mez123794" target="_blank" class="home-btn-outline">
+                        <i class="fab fa-telegram"></i> @mez123794
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="home-footer">
+        <div class="home-footer-links">
+            <a href="login.html" data-en="Login" data-ar="دخول">Login</a>
+            <a href="https://t.me/mez123794" target="_blank" data-en="Telegram" data-ar="تيليغرام">Telegram</a>
+            <a href="#" onclick="showImpressum(); return false;" data-en="Imprint" data-ar="بيانات الناشر">Imprint</a>
+        </div>
+        <p data-en="© 2026 Deutsch mit Rawad · All rights reserved"
+            data-ar="© ٢٠٢٦ تعلّم الألمانية مع رواد · جميع الحقوق محفوظة">© 2026 Deutsch mit Rawad · All rights reserved
+        </p>
+    </footer>
+
+    <div id="toastNotification" class="toast-notification">
+        <i id="toastIcon" class="fas fa-info-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="supabase.js"></script>
+    <script>
+        window.currentLang = localStorage.getItem('ui_lang') || 'en';
+
+        function applyLanguage(lang) {
+            window.currentLang = lang === 'ar' ? 'ar' : 'en';
+            document.documentElement.lang = window.currentLang === 'ar' ? 'ar' : 'en';
+            document.documentElement.dir = window.currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.querySelectorAll('[data-en][data-ar]').forEach(function (el) {
+                el.textContent = window.currentLang === 'ar'
+                    ? el.getAttribute('data-ar')
+                    : el.getAttribute('data-en');
+            });
+            const langToggle = document.getElementById('langToggle');
+            if (langToggle) {
+                langToggle.querySelector('span').textContent = window.currentLang === 'ar' ? 'AR' : 'EN';
+            }
+            localStorage.setItem('ui_lang', window.currentLang);
+        }
+
+        window.showImpressum = function () {
+            alert('Deutsch mit Rawad\nKontakt: @mez123794');
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.checkSession && window.checkSession()) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            applyLanguage(window.currentLang);
+
+            const langToggle = document.getElementById('langToggle');
+            if (langToggle) {
+                langToggle.addEventListener('click', function () {
+                    applyLanguage(window.currentLang === 'en' ? 'ar' : 'en');
+                });
+            }
+
+            window.showToast = function (message, type) {
+                const toast = document.getElementById('toastNotification');
+                const toastMsg = document.getElementById('toastMessage');
+                const toastIcon = document.getElementById('toastIcon');
+                if (!toast || !toastMsg) return;
+                toastMsg.textContent = message;
+                toast.className = 'toast-notification show ' + (type || 'info');
+                toastIcon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-info-circle';
+                setTimeout(function () { toast.classList.remove('show'); }, 3000);
+            };
+
+            setTimeout(function () {
+                showToast(window.currentLang === 'ar' ? '👋 مرحباً بك' : '👋 Welcome to Deutsch mit Rawad', 'info');
+            }, 800);
+
+            var slides = document.querySelectorAll('.home-slide');
+            var dots = document.querySelectorAll('.home-slider-dot');
+            var slideIdx = 0;
+            var slideTimer;
+
+            function goSlide(i) {
+                if (!slides.length) return;
+                slideIdx = (i + slides.length) % slides.length;
+                slides.forEach(function (s, n) { s.classList.toggle('active', n === slideIdx); });
+                dots.forEach(function (d, n) { d.classList.toggle('active', n === slideIdx); });
+            }
+
+            function startSlider() {
+                if (slideTimer) clearInterval(slideTimer);
+                if (slides.length < 2) return;
+                slideTimer = setInterval(function () { goSlide(slideIdx + 1); }, 5000);
+            }
+
+            dots.forEach(function (dot) {
+                dot.addEventListener('click', function () {
+                    goSlide(parseInt(dot.dataset.slide, 10) || 0);
+                    startSlider();
+                });
+            });
+            startSlider();
+        });
+    </script>
+</body>
+
+</html>
