@@ -67,18 +67,6 @@
                 return
             }
 
-            try {
-                const voiceRes = await fetch('voices/manifest.json', { cache: 'no-store' })
-                if (voiceRes.ok) {
-                    const voiceList = await voiceRes.json()
-                    window.VOICE_MANIFEST = new Set(Array.isArray(voiceList) ? voiceList : [])
-                } else {
-                    window.VOICE_MANIFEST = null
-                }
-            } catch (e) {
-                window.VOICE_MANIFEST = null
-            }
-
             const data = await window.loadQuestionsFile(fileKey)
 
             if (!data) {

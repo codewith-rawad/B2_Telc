@@ -8,8 +8,8 @@
 
     const POINTS = 10
 
-    // ====== المسار الجديد للصوتيات على Supabase ======
-    const VOICES_BASE = 'https://qrznwrvfjacoepegjpov.supabase.co/storage/v1/object/public/teil1lesen/voices/';
+    /** ملفات الصوت في جذر الموقع: teil1_num1.mp3 */
+    const VOICES_BASE = ''
 
     function esc(s) {
         return String(s == null ? '' : s)
@@ -56,36 +56,31 @@
         return names.filter(function (v, i, a) { return a.indexOf(v) === i })
     }
 
-    function resolveHorenAudioFile(fileKey, sectionId) {
+    function horenAudioCandidates(fileKey, sectionId) {
         const teil = horenTeilNum(fileKey)
         const names = horenAudioTryNames(sectionId)
-        const extensions = ['m4a', 'mp3'];
-        for (let i = 0; i < names.length; i++) {
-            const baseName = 'teil' + teil + '_num' + names[i];
-            for (let j = 0; j < extensions.length; j++) {
-                return { baseName: baseName, ext: extensions[j] };
-            }
-        }
-        return null;
+        const exts = ['mp3', 'm4a']
+        const list = []
+        names.forEach(function (n) {
+            const baseName = 'teil' + teil + '_num' + n
+            exts.forEach(function (ext) {
+                list.push({ baseName: baseName, ext: ext, src: VOICES_BASE + baseName + '.' + ext })
+            })
+        })
+        return list
     }
 
-    function horenAudioBase(fileKey, sectionId) {
-        const resolved = resolveHorenAudioFile(fileKey, sectionId)
-        if (resolved && typeof resolved === 'object') {
-            return VOICES_BASE + resolved.baseName + '.' + resolved.ext
-        }
-        return '';
+    function voiceUrl(baseName, ext) {
+        return VOICES_BASE + baseName + '.' + ext
     }
 
-    function hasHorenAudio(fileKey, sectionId) {
-        return true;
+    function hasHorenAudio() {
+        return true
     }
 
     function audioPlayerHtml(fileKey, sectionId) {
-        const resolved = resolveHorenAudioFile(fileKey, sectionId)
-        const base = horenAudioBase(fileKey, sectionId)
-
-        if (!resolved || !base) {
+        const candidates = horenAudioCandidates(fileKey, sectionId)
+        if (!candidates.length) {
             return `<div class="qe-audio-panel qe-audio-missing">
                 <div class="qe-audio-head">
                     <span class="qe-audio-icon"><i class="fas fa-volume-mute"></i></span>
@@ -98,20 +93,12 @@
             </div>`
         }
 
-        const possibleExts = ['m4a', 'mp3'];
-        let sourcesHtml = '';
-        const src1 = VOICES_BASE + resolved.baseName + '.' + resolved.ext;
-        const type1 = resolved.ext === 'm4a' ? 'audio/mp4' : 'audio/mpeg';
-        sourcesHtml += `<source src="${esc(src1)}" type="${type1}">`;
-        possibleExts.forEach(function(ext) {
-            if (ext !== resolved.ext) {
-                const altSrc = VOICES_BASE + resolved.baseName + '.' + ext;
-                const altType = ext === 'm4a' ? 'audio/mp4' : 'audio/mpeg';
-                sourcesHtml += `<source src="${esc(altSrc)}" type="${altType}">`;
-            }
-        });
+        const sourcesHtml = candidates.map(function (c) {
+            const type = c.ext === 'm4a' ? 'audio/mp4' : 'audio/mpeg'
+            return `<source src="${esc(c.src)}" type="${type}">`
+        }).join('')
 
-        return `<div class="qe-audio-panel" data-audio-base="${esc(base)}">
+        return `<div class="qe-audio-panel" data-audio-base="${esc(candidates[0].src)}">
             <div class="qe-audio-head">
                 <span class="qe-audio-icon"><i class="fas fa-headphones"></i></span>
                 <div class="qe-audio-meta">
